@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>three.js css3d - periodic table</title>
+		<title>직원 데이터 시각화</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<link type="text/css" rel="stylesheet" href="main.css">
@@ -15,6 +15,7 @@
 				bottom: 20px;
 				width: 100%;
 				text-align: center;
+				display: none;
 			}
 
 			.element {
@@ -78,17 +79,133 @@
 				color: #000000;
 				background-color: rgba(0,255,255,0.75);
 			}
+			
+			#fileUpload {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				text-align: center;
+				background-color: rgba(0, 127, 127, 0.2);
+				padding: 30px;
+				border-radius: 10px;
+				border: 1px solid rgba(127, 255, 255, 0.25);
+				z-index: 100;
+			}
+			
+			#fileUpload h2 {
+				color: rgba(127, 255, 255, 0.75);
+				margin-bottom: 20px;
+			}
+			
+			#fileUpload p {
+				color: rgba(127, 255, 255, 0.75);
+				margin-bottom: 20px;
+			}
+			
+			#fileInput {
+				display: none;
+			}
+			
+			#fileLabel {
+				display: inline-block;
+				padding: 10px 20px;
+				background-color: rgba(0, 127, 127, 0.5);
+				color: white;
+				border-radius: 5px;
+				cursor: pointer;
+				margin-bottom: 10px;
+			}
+			
+			#fileLabel:hover {
+				background-color: rgba(0, 127, 127, 0.7);
+			}
+			
+			#fileName {
+				color: rgba(127, 255, 255, 0.75);
+				margin-top: 10px;
+				font-style: italic;
+			}
+			
+			#tableContainer {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				max-width: 90%;
+				max-height: 80%;
+				overflow: auto;
+				background-color: rgba(0, 0, 0, 0.7);
+				border: 1px solid rgba(127, 255, 255, 0.25);
+				border-radius: 5px;
+				display: none;
+			}
+			
+			#employeeTable {
+				border-collapse: collapse;
+				width: 100%;
+				color: rgba(127, 255, 255, 0.75);
+			}
+			
+			#employeeTable th, #employeeTable td {
+				padding: 8px 12px;
+				text-align: left;
+				border-bottom: 1px solid rgba(127, 255, 255, 0.25);
+			}
+			
+			#employeeTable th {
+				background-color: rgba(0, 127, 127, 0.5);
+				color: white;
+			}
+			
+			#employeeTable tr:hover {
+				background-color: rgba(0, 127, 127, 0.2);
+			}
+			
+			.instruction {
+				position: absolute;
+				bottom: 20px;
+				width: 100%;
+				text-align: center;
+				color: rgba(127, 255, 255, 0.75);
+				font-size: 14px;
+				z-index: 10;
+			}
 		</style>
 	</head>
 	<body>
 
-		<div id="info"><a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> css3d - periodic table.</div>
+		<div id="info">직원 데이터 시각화 시스템</div>
 		<div id="container"></div>
+		
+		<div id="fileUpload">
+			<h2>직원 데이터 업로드</h2>
+			<p>번호, 이름, 부서, 직위가 탭으로 구분된 파일을 업로드하세요.</p>
+			<input type="file" id="fileInput" accept=".txt,.tsv,.csv">
+			<label for="fileInput" id="fileLabel">파일 선택</label>
+			<div id="fileName">선택된 파일 없음</div>
+		</div>
+		
+		<div id="tableContainer">
+			<table id="employeeTable">
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>이름</th>
+						<th>부서</th>
+						<th>직위</th>
+					</tr>
+				</thead>
+				<tbody id="tableBody">
+				</tbody>
+			</table>
+		</div>
+		
+		<div class="instruction" id="spacebarInstruction">스페이스바를 눌러 3D 구체 뷰로 전환하세요</div>
+		
 		<div id="menu">
 			<button id="table">TABLE</button>
 			<button id="sphere">SPHERE</button>
-			<button id="helix">HELIX</button>
-			<button id="grid">GRID</button>
 		</div>
 
 		<script type="importmap">
