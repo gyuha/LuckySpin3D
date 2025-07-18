@@ -88,4 +88,154 @@ a, button, input, select {
 	background-color: #f00;
 	margin-top: 20px;
 	padding: 10px;
+}/* 상세
+ 카드 스타일 */
+.detailed-card {
+	width: 180px !important;
+	height: 240px !important;
+	transition: all 0.3s ease;
+}
+
+.detailed-info {
+	position: absolute;
+	top: 100px;
+	left: 0;
+	right: 0;
+	bottom: 15px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	padding: 10px;
+	color: rgba(255, 255, 255, 0.9);
+	font-size: 14px;
+	text-align: center;
+	opacity: 0;
+	animation: fadeIn 0.5s ease 0.3s forwards;
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 0 0 5px 5px;
+	box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+@keyframes fadeIn {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+.employee-name {
+	font-size: 16px;
+	font-weight: bold;
+	color: rgba(255, 255, 255, 0.95);
+	margin-bottom: 5px;
+	text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+	padding: 2px 5px;
+	background-color: rgba(0, 127, 127, 0.3);
+	border-radius: 3px;
+	display: inline-block;
+}
+
+.employee-department, .employee-position, .employee-id {
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.8);
+	margin: 3px 0;
+}/* 카드 상
+태 전환 애니메이션 */
+.element {
+    transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+}
+
+/* 상세 정보 항목 스타일 */
+.employee-department, .employee-position, .employee-id {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    padding: 2px 5px;
+    margin: 3px 0;
+    display: inline-block;
+    width: 90%;
+    text-align: center;
+}/* 애니메이션
+ 전환 효과 개선 */
+.element {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+}
+
+/* 카드 호버 효과 개선 */
+.element:hover {
+    box-shadow: 0px 0px 15px rgba(0,255,255,0.8) !important;
+    border: 1px solid rgba(127,255,255,0.9) !important;
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+/* 카드 상세 정보 전환 효과 */
+.detailed-info {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform-origin: center top;
+    animation: detailsAppear 0.5s ease forwards;
+}
+
+@keyframes detailsAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(10px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* 카드 포커스 효과 */
+.detailed-card {
+    transition: width 0.5s ease, height 0.5s ease, box-shadow 0.5s ease, border 0.5s ease, background-color 0.5s ease;
+    animation: cardFocus 0.5s ease forwards;
+}
+
+@keyframes cardFocus {
+    0% {
+        box-shadow: 0px 0px 12px rgba(0,255,255,0.5);
+    }
+    50% {
+        box-shadow: 0px 0px 25px rgba(0,255,255,0.9);
+    }
+    100% {
+        box-shadow: 0px 0px 20px rgba(0,255,255,0.8);
+    }
+}
+
+/* 테이블 뷰 전환 효과 */
+#tableContainer {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#tableContainer.show {
+    animation: tableAppear 0.5s ease forwards;
+}
+
+@keyframes tableAppear {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* 스페이스바 안내 메시지 전환 효과 */
+.instruction {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    animation: instructionPulse 2s ease-in-out infinite;
+}
+
+@keyframes instructionPulse {
+    0% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.7;
+    }
 }
